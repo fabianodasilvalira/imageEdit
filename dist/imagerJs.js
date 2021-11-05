@@ -3702,7 +3702,7 @@ var ImagerJs = {
       _this.on("ready", onImagerReady);
     };
 
-    var fileSelector = new util.FileSelector("image/*");
+    var fileSelector = new util.FileSelector("image/*,application/pdf");
     fileSelector.onFileSelected(function (file) {
       util.setWaiting(
         _this.$selectorContainer,
@@ -4614,10 +4614,10 @@ var ImagerJs = {
 
         if (e.target.files[i].type.indexOf("image") < 0) {
           if (e.target.files[i].type == "application/pdf") {
-            // console.log(e.target.files[i]);
             var file = e.target.files[i];
+            console.log(file);
             var data = new FormData();
-            data.append("file", file);
+            data.append("upl", file);
 
             $("#salvarPdf").click(function () {
 
@@ -4635,7 +4635,7 @@ var ImagerJs = {
                   alert("Erro " + data);
                 },
               });
-            });
+            });return
           } else {
             _this.showError(translations.t("tipo de arquivo incorreto!!!"));
           }
